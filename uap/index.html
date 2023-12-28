@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>UAP</title>
+    </head>
+
+    <style>
+        table,th,td{
+            border: 2px solid#1d1c1c;
+        }
+        label{
+            display: block;
+            margin-left: 8px;
+            padding-bottom: 8px;
+        }
+        button{
+            display: block;
+            margin: 7px;
+        }
+        input {
+            width: calc(20% - 20px);
+            padding: 8px;
+            margin-bottom: 12px;
+        }
+      
+    
+    </style>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td>Code barang</td>
+                <td>Nama barang</td>
+                <td>Harga barang</td>
+            </tr>
+            <tr>
+                <td>001</td>
+                <td>Barang A</td>
+                <td>10000</td>
+            </tr>
+            <tr>
+                <td>002</td>
+                <td>Barang B</td>
+                <td>20000</td>
+            </tr>
+            <tr>
+                <td>003</td>
+                <td>Barang C</td>
+                <td>30000</td>
+            </tr>
+        </thead>
+    </table>
+    
+    <div class="container">
+        <h2>Inputan User</h2>
+    
+        <label for="kode_barang">Masukkan Kode:</label>
+        <input type="text" id="kode_barang" placeholder="Masukkan kode barang">
+    
+        <label for="banyak_barang">Banyaknya Barang:</label>
+        <input type="number" id="banyak_barang" placeholder="Masukkan jumlah barang">
+    
+        <button onclick="tambahTransaksi()">Submit</button>
+    </div>
+
+    <script>
+        function tambahTransaksi() {
+          var kodeBarang = document.getElementById('kode_barang').value;
+          var banyakBarang = parseInt(document.getElementById('banyak_barang').value);
+    
+          if (!kodeBarang || isNaN(banyakBarang) || banyakBarang <= 0) {
+            alert('Masukkan data yang valid');
+            return;
+          }
+    
+          // Simulasi data barang dari kode yang dimasukkan
+          var dataBarang = {
+            '001': { nama: 'Barang A', harga: 10000 },
+            '002': { nama: 'Barang B', harga: 20000 },
+            '003': { nama: 'Barang C', harga: 30000 }
+          };
+    
+          var totalHarga = dataBarang[kodeBarang].harga * banyakBarang;
+    
+          alert('Total yang harus dibayar: ' + totalHarga);
+    
+          var uangDibayar = parseFloat(prompt('Masukkan jumlah uang yang dibayarkan:'));
+    
+          if (isNaN(uangDibayar) || uangDibayar < totalHarga) {
+            alert('Jumlah uang anda kurang');
+            return;
+          }
+    
+          var kembalian = uangDibayar - totalHarga;
+          alert('Total kembalian: ' + kembalian);
+        }
+      </script>
+</body>
+</html>
